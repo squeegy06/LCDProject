@@ -45,7 +45,7 @@ private:
 	void displayStatsScreen1();
 	void displayStatsScreen2();
 	bool setMonoBackgroundFromFile(TCHAR* fileName);
-	bool drawProgressBar(int lineNumber, int progress);
+	bool drawProgressBar(int lineNumbers[4]);
 
 	void clearDisplay();
 
