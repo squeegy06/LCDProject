@@ -6,6 +6,8 @@
 
 TCHAR monoImageFileName[] = _T("LogiLogoMono.bmp");
 
+ULONG_PTR g_gdiplusToken;
+
 StrifeLCD::StrifeLCD(){}
 
 bool StrifeLCD::initStrifeLCD()
@@ -17,10 +19,13 @@ bool StrifeLCD::initStrifeLCD()
 	assists = STARTING_ASSISTS;
 	level = STARTING_LEVEL;
 
+	// Start Gdiplus 
+	Gdiplus::GdiplusStartupInput gdiplusStartupInput;
+	Gdiplus::GdiplusStartup(&g_gdiplusToken, &gdiplusStartupInput, NULL);
+
 	currentScreen = 0;
 	printf("Initialized\n");
-
-	if (LogiLcdIsConnected(LOGI_LCD_TYPE_MONO))
+	if (true)
 	{
 		if (!LogiLcdInit(STRIFELCD_APP_NAME, LOGI_LCD_TYPE_MONO))
 		{
@@ -103,11 +108,16 @@ void StrifeLCD::updateScreen()
 	LogiLcdUpdate();
 }
 
+bool StrifeLCD::drawProgressBar(int lineNumber, int progress)
+{
+
+}
+
 bool StrifeLCD::setMonoBackgroundFromFile(TCHAR* fileName)
 {
 	HDC hdc = ::GetDC(NULL);
 
-	Gdiplus::Bitmap* imageMono = Gdiplus::Bitmap::FromFile(fileName);
+	Gdiplus::Bitmap* imageMono = Gdiplus::Bitmap::FromFile( fileName );
 
 	if (NULL == imageMono)
 		return false;

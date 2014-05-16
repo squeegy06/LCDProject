@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #pragma comment(lib , "LogitechLcd.lib")
+#pragma comment(lib,"gdiplus.lib")
 #include "afxdialogex.h"
 #include "gdiplus.h"
 #include "LogitechLcd.h"
@@ -44,6 +45,7 @@ private:
 	void displayStatsScreen1();
 	void displayStatsScreen2();
 	bool setMonoBackgroundFromFile(TCHAR* fileName);
+	bool drawProgressBar(int lineNumber, int progress);
 
 	void clearDisplay();
 
